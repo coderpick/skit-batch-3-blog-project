@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Author\AuthorDashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +22,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group( ['as' => 'admin.', 'prefix' => 'admin/', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {
+    Route::get( 'dashboard', [AdminDashboardController::class, 'index'] )->name( 'dashboard' );
+    // Route::resource( 'tag', '\App\Http\Controllers\Admin\TagController' );
+} );
+Route::group( ['as' => 'author.', 'prefix' => 'author/', 'namespace' => 'Author', 'middleware' => ['auth', 'author']], function () {
+    Route::get( 'dashboard', [AuthorDashboardController::class, 'index'] )->name( 'dashboard' );
+} );
