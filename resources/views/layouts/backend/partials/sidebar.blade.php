@@ -36,11 +36,20 @@
                               </p>
                           </a>
                       </li>
+                      <li class="nav-item">
+                          <a href="{{ route('admin.tag.index') }}" class="nav-link {{ Request::is('admin/tag') ? 'active' : '' }}">
+                              <i class="nav-icon far fa-tag"></i>
+                              <p>
+                                  Tag
+                              </p>
+                          </a>
+                      </li>
+
                   @endif
                   {{-- admin route end --}}
 
                   {{-- Author route start --}}
-                  @if (Request::is('author/dashboard') || Request::is('admin/tag*'))
+                  @if (Request::is('author/dashboard'))
                       <li class="nav-item has-treeview menu-open">
                           <a href="{{ route('author.dashboard') }}"
                               class="nav-link {{ Request::is('author/dashboard') ? 'active' : '' }}">
