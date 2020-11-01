@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Tag;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Session;
 class TagController extends Controller
 {
     /**
@@ -25,7 +27,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.admin.tag.create');
     }
 
     /**
@@ -36,7 +38,15 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'tag'=>'required'
+        ]);
+        $tag = new Tag();
+        $tag->name = $request->tag;
+        $tag->slug = Str::slug($request->tag);
+        $tag->save();
+        Session::flash('success', 'Tag save successfully');
+        return redirect()->route('admin.tag.index');
     }
 
     /**
@@ -58,7 +68,9 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        //
+        // $tag = Tag::where('id',$id)->first();
+        $tag = Tag::findOrFail($id);
+        return view('backend.admin.tag.edit',compact('tag'));
     }
 
     /**
@@ -70,7 +82,15 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $this->validate($request,[
+            'tag'=>'required'
+        ]);
+        $tag = Tag::findOrFail($id);
+        $tag->name = $request->tag;
+        $tag->slug = Str::slug($request->tag);
+        $tag->save();
+        Session::flash('success', 'Tag update successfully');
+        return redirect()->route('admin.tag.index');
     }
 
     /**
@@ -81,6 +101,9 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tag = Tag::findOrFail($id);
+        $tag->delete();
+        Session::flash('success', 'Tag delete successfully');
+        return redirect()->route('admin.tag.index');
     }
 }

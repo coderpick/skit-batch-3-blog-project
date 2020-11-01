@@ -15,7 +15,7 @@
                       alt="User Image">
               </div>
               <div class="info">
-                  <a href="#" class="d-block">Alexander Pierce</a>
+                  <a href="#" class="d-block">{{ Auth::user()->name }}</a>
               </div>
           </div>
 
@@ -37,7 +37,8 @@
                           </a>
                       </li>
                       <li class="nav-item">
-                          <a href="{{ route('admin.tag.index') }}" class="nav-link {{ Request::is('admin/tag') ? 'active' : '' }}">
+                          <a href="{{ route('admin.tag.index') }}"
+                              class="nav-link {{ Request::is('admin/tag*') ? 'active' : '' }}">
                               <i class="nav-icon far fa-tag"></i>
                               <p>
                                   Tag

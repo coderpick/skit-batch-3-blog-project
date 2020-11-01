@@ -26,6 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group( ['as' => 'admin.', 'prefix' => 'admin/', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get( 'dashboard', [AdminDashboardController::class, 'index'] )->name( 'dashboard' );
     Route::resource( 'tag', '\App\Http\Controllers\Admin\TagController');
+    Route::resource( 'category', '\App\Http\Controllers\Admin\CategoryController');
 } );
 
 Route::group( ['as' => 'author.', 'prefix' => 'author/', 'namespace' => 'Author', 'middleware' => ['auth', 'author']], function () {
