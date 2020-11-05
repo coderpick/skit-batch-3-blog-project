@@ -1,21 +1,15 @@
 @extends('layouts.backend.master')
 @section('content')
     <div class="row">
-        <div class="col-12">
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success alert-block">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>{{ $message }}</strong>
-                </div>
-            @endif
+        <div class="col-12">           
             <div class="card">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="card-title">Tags</h3>
+                            <h3 class="card-title">Category</h3>
                         </div>
                         <div class="col-sm-6 text-right">
-                            <a href="{{ route('admin.tag.create') }}" class="btn btn-success btn-sm"><i
+                            <a href="{{ route('admin.category.create') }}" class="btn btn-success btn-sm"><i
                                     class="fa fa-plus-circle"></i> Add New</a>
                         </div>
                     </div>
@@ -36,22 +30,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($tags as $key => $tag)
+                                        @foreach ($categories as $key => $category)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
-                                                <td>{{ $tag->name }}</td>
-                                                <td>{{ $tag->slug }}</td>
+                                                <td>{{ $category->name }}</td>
+                                                <td>{{ $category->slug }}</td>
                                                 <td width="12%">
-                                                    <a href="{{ route('admin.tag.edit', $tag->id) }}"
-                                                        class="btn btn-success">
+                                                    <a href="{{ route('admin.category.edit', $category->id) }}"
+                                                        class="btn btn-success btn-sm">
                                                         <i class="fa fa-pencil-alt"></i></a>
 
                                                     <a onclick="event.preventDefault();
                                                     document.getElementById('delete-form').submit();"
-                                                        class="btn btn-danger">
+                                                        class="btn btn-danger btn-sm text-white">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
-                                                    <form id="delete-form" action="{{ route('admin.tag.destroy', $tag->id) }}"
+                                                    <form id="delete-form" action="{{ route('admin.category.destroy', $category->id) }}"
                                                         method="POST" style="display: none;">
                                                         @csrf
                                                         @method('DELETE')
@@ -108,9 +102,9 @@
             });
             $('#example2').DataTable({
                 "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": false,
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,

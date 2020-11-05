@@ -26,7 +26,7 @@
                   <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                   {{-- Admin route start --}}
-                  @if (Request::is('admin/dashboard') || Request::is('admin/tag*'))
+                  @if (Request::is('admin/dashboard') || Request::is('admin/tag*') || Request::is('admin/category*'))
                       <li class="nav-item has-treeview menu-open">
                           <a href="{{ route('admin.dashboard') }}"
                               class="nav-link {{ Request::is('admin/dashboard') ? 'active' : '' }}">
@@ -39,9 +39,18 @@
                       <li class="nav-item">
                           <a href="{{ route('admin.tag.index') }}"
                               class="nav-link {{ Request::is('admin/tag*') ? 'active' : '' }}">
-                              <i class="nav-icon far fa-tag"></i>
+                              <i class="nav-icon fa fa-list"></i>
                               <p>
                                   Tag
+                              </p>
+                          </a>
+                      </li>
+                        <li class="nav-item">
+                          <a href="{{ route('admin.category.index') }}"
+                              class="nav-link {{ Request::is('admin/category*') ? 'active' : '' }}">
+                              <i class="nav-icon fa fa-list"></i>
+                              <p>
+                                  Cateogry
                               </p>
                           </a>
                       </li>

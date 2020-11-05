@@ -7,10 +7,10 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="card-title">Tag <i class="fa fa-angle-right"></i> edit</h3>
+                            <h3 class="card-title">Category <i class="fa fa-angle-right"></i> Edit</h3>
                         </div>
                         <div class="col-sm-6 text-right">
-                            <a href="{{ route('admin.tag.index') }}" class="btn btn-warning btn-sm text-white"><i
+                            <a href="{{ route('admin.category.index') }}" class="btn btn-warning btn-sm text-white"><i
                                     class="fa fa-reply"></i> Back</a>
                         </div>
                     </div>
@@ -19,15 +19,15 @@
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-md-8">
-                            <form action="{{ route('admin.tag.update',$tag->id) }}" method="post">
+                            <form action="{{ route('admin.category.update',$category->id) }}" method="post">
                                 @csrf
-                                @if($tag)
+                                @if($category)
                                 @method('PUT')
                                 @endif
                                 <div class="form-group">
-                                    <label for="tag">Tag Name</label>
-                                    <input type="text" name="tag" id="tag" class="form-control" value="{{ $tag->name??old('tag') }}">
-                                    @error('tag')
+                                    <label for="category">Category Name</label>
+                                    <input type="text" name="category" id="category" class="form-control" value="{{ $category->name??old('category') }}">
+                                    @error('category')
                                     <span class="text-danger ">{{ $message }}</span>
                                     @enderror
                                 </div>
