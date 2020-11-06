@@ -4,7 +4,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }} | {{ $pageTitle??"Page title" }}</title>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{  asset('assets/backend/plugins/fontawesome-free/css/all.min.css') }}">
     @stack('css')
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{  asset('assets/backend/dist/css/adminlte.min.css') }}">
      <style>
      .main-header{
-         z-index:0 !important;
+         z-index:99999 !important;
      }
      </style>
     @stack('customCSS')

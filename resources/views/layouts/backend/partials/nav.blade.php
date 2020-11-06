@@ -30,7 +30,7 @@
           <li class="nav-item dropdown">
               <a class="nav-link" data-toggle="dropdown" href="#">
                   <img src="{{ asset('assets/backend/dist/img/user2-160x160.jpg') }}" style="width: 30px;margin-bottom:2px"  class="img-circle elevation-2"
-                      alt="User Image">&nbsp; <strong>{{ Auth::user()->name }}</strong>
+                      alt="User Image">&nbsp;
               </a>
               <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                   <a class="dropdown-item" href="#"> </a>

@@ -16,8 +16,11 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::all();
-        return view('backend.admin.tag.index',compact('tags'));
+        $data['tags'] = Tag::all();
+        $data['pageTitle']      ='Tag';
+        $data['breadcrumb']     ='list';
+        $data['parentRoute']    ='admin.tag.index';
+        return view('backend.admin.tag.index',$data);
     }
 
     /**
@@ -27,7 +30,10 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('backend.admin.tag.create');
+        $data['pageTitle']      ='Tag';
+        $data['breadcrumb']     ='create';
+        $data['parentRoute']    ='admin.tag.index';
+        return view('backend.admin.tag.create',$data);
     }
 
     /**
@@ -69,8 +75,11 @@ class TagController extends Controller
     public function edit($id)
     {
         // $tag = Tag::where('id',$id)->first();
-        $tag = Tag::findOrFail($id);
-        return view('backend.admin.tag.edit',compact('tag'));
+        $data['tag']            = Tag::findOrFail($id);
+        $data['pageTitle']      ='Tag';
+        $data['breadcrumb']     ='edit';
+        $data['parentRoute']    ='admin.tag.index';
+        return view('backend.admin.tag.edit',$data);
     }
 
     /**

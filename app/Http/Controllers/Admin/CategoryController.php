@@ -15,18 +15,20 @@ class CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $categories = Category::all();     
-        return view( 'backend.admin.category.index', compact( 'categories' ) );
+        $data['categories'] = Category::all();
+        $data['pageTitle']      ='Category';
+        $data['breadcrumb']     ='list';
+        $data['parentRoute']    ='admin.category.index';
+        return view( 'backend.admin.category.index',$data );
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create() {
-        return view( 'backend.admin.category.create' );
+        $data['pageTitle']      ='Category';
+        $data['breadcrumb']     ='create';
+        $data['parentRoute']    ='admin.category.index';
+        return view( 'backend.admin.category.create',$data);
     }
 
     /**
@@ -65,8 +67,11 @@ class CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit( $id ) {
-        $category = Category::findOrFail( $id );
-        return view( 'backend.admin.category.edit', compact( 'category' ) );
+        $data['category'] = Category::findOrFail( $id );
+        $data['pageTitle']      ='Category';
+        $data['breadcrumb']     ='edit';
+        $data['parentRoute']    ='admin.category.index';
+        return view( 'backend.admin.category.edit', $data );
 
     }
 
@@ -84,7 +89,7 @@ class CategoryController extends Controller {
         $category = Category::findOrFail( $id );
         $category->name = $request->category;
         $category->slug = Str::slug( $request->category );
-        $category->save();      
+        $category->save();
         notify()->success('Category update successfully');
         return redirect()->route( 'admin.category.index' );
     }
@@ -96,7 +101,7 @@ class CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy( $id ) {
-        $category = Category::where( 'id',$id )->first();       
+        $category = Category::where( 'id',$id )->first();
         $category->delete();
         notify()->success('Category delete successfully');
         return redirect()->route( 'admin.category.index' );

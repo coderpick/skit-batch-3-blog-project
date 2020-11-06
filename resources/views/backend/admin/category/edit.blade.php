@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="card-title">Category <i class="fa fa-angle-right"></i> Edit</h3>
+                            <h3 class="card-title">Edit</h3>
                         </div>
                         <div class="col-sm-6 text-right">
                             <a href="{{ route('admin.category.index') }}" class="btn btn-warning btn-sm text-white"><i

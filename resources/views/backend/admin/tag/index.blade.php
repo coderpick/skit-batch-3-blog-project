@@ -12,7 +12,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="card-title">Tags</h3>
+                            <h3 class="card-title"></h3>
                         </div>
                         <div class="col-sm-6 text-right">
                             <a href="{{ route('admin.tag.create') }}" class="btn btn-success btn-sm"><i
