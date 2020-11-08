@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{  asset('assets/backend/dist/css/adminlte.min.css') }}">
      <style>
      .main-header{
-         z-index:99999 !important;
+         z-index:0 !important;
      }
      </style>
     @stack('customCSS')
