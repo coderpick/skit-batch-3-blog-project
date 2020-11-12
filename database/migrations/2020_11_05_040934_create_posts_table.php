@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
                 ->constrained('users')
                 ->onDelete('cascade');
             $table->string('title');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->longText('body');
             $table->string('image')->default('default.png');
             $table->boolean('status')->default(false);

@@ -57,7 +57,7 @@
                     <li class="nav-item">
                         <a href="{{ route('admin.post.index') }}"
                            class="nav-link {{ Request::is('admin/post*') ? 'active' : '' }}">
-                            <i class="nav-icon fa fa-file-text"></i>
+                            <i class="nav-icon fa fa-file-o"></i>
                             <p>
                                 Post
                             </p>

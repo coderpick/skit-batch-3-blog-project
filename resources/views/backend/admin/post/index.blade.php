@@ -35,12 +35,12 @@
                                     @foreach ($posts as $key => $post)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
-                                            <td>{{ $post->title }}</td>
+                                            <td>{!!  \Illuminate\Support\Str::limit($post->title,15)  !!}</td>
                                             <td>{{ $post->user->name??"" }}</td>
                                             <td>{{ $post->view_count }}</td>
                                             <td>{{ $post->created_at }}</td>
                                             <td width="14%">
-                                                <a href="{{ route('admin.post.show', $post->id) }}"
+                                                <a href="{{ route('admin.post.show', $post->slug) }}"
                                                    class="btn btn-info btn-sm">
                                                     <i class="fa fa-eye"></i></a>
                                                 <a href="{{ route('admin.post.edit', $post->id) }}"

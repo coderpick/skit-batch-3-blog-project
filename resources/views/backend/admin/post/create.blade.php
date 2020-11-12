@@ -22,8 +22,20 @@
                             <form action="{{ route('admin.tag.store') }}" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="tag">Tag Name</label>
+                                    <label for="tag">Title</label>
                                     <input type="text" name="tag" id="tag" class="form-control" value="{{ old('tag') }}">
+                                    @error('tag')
+                                    <span class="text-danger ">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                  <div class="form-group">
+                                    <label for="tag">Tag</label>
+                                      <select id="tag" name="tag" class="form-control" multiple>
+                                          @forelse($tags as $tag)
+                                              <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                          @empty
+                                          @endforelse
+                                      </select>
                                     @error('tag')
                                     <span class="text-danger ">{{ $message }}</span>
                                     @enderror
