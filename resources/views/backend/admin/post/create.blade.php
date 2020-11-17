@@ -2,68 +2,125 @@
 @section('content')
     <div class="row">
         <div class="col-12">
+            <form action="{{ route('admin.post.store') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="card">
+                    <div class="card-header">Add New Post</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label for="tag">Select Tag</label>
+                                    <select name="tags[]" id="tag" class="form-control select2" multiple="multiple">
+                                        @forelse($tags as $tag)
+                                            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                        @empty
+                                            No tag found(:
+                                        @endforelse
+                                    </select>
+                                    @error('tag')
+                                    <span class="text-danger d-block">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="category">Select Category</label>
+                                    <select name="categories[]" id="category" class="form-control select2" multiple="multiple">
+                                        @forelse($categories as $category)
+                                            <option  value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @empty
+                                            No category found(:
+                                        @endforelse
+                                    </select>
+                                    @error('category')
+                                    <span class="text-danger d-block">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="title">Title</label>
+                                    <input type="text" name="title" id="title" value="{{ old('title') }}" class="form-control" placeholder="Enter post title">
+                                    @error('title')
+                                    <span class="text-danger d-block">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="image">Post Image</label>
+                                    <input type="file" name="image" id="image" data-height="200" class="form-control dropify">
+                                    @error('image')
+                                    <span class="text-danger d-block">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h3 class="card-title">Add New</h3>
+                        <div class="form-group">
+                            <label for="description">Post description</label>
+                            <textarea name="description" id="description" class="form-control summernote">{{ old('description') }}</textarea>
+                            @error('description')
+                            <span class="text-danger d-block">{{ $message }}</span>
+                            @enderror
                         </div>
-                        <div class="col-sm-6 text-right">
-                            <a href="{{ route('admin.tag.index') }}" class="btn btn-warning btn-sm text-white"><i
-                                    class="fa fa-reply"></i> Back</a>
+                        <div class="form-group clearfix">
+                            <div class="icheck-primary d-inline">
+                                <input type="radio" id="radioPrimary1" name="status"  value="true">
+                                <label for="radioPrimary1">
+                                    Published
+                                </label>
+                            </div>
+                            <div class="icheck-primary d-inline">
+                                <input type="radio" id="radioPrimary2" name="status" value="false" >
+                                <label for="radioPrimary2">
+                                    Draft
+                                </label>
+                            </div>
+                            @error('status')
+                            <span class="text-danger d-block">{{ $message }}</span>
+                            @enderror
                         </div>
-                    </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <form action="{{ route('admin.tag.store') }}" method="post">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="tag">Title</label>
-                                    <input type="text" name="tag" id="tag" class="form-control" value="{{ old('tag') }}">
-                                    @error('tag')
-                                    <span class="text-danger ">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                  <div class="form-group">
-                                    <label for="tag">Tag</label>
-                                      <select id="tag" name="tag" class="form-control" multiple>
-                                          @forelse($tags as $tag)
-                                              <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                                          @empty
-                                          @endforelse
-                                      </select>
-                                    @error('tag')
-                                    <span class="text-danger ">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Save</button>
-                                </div>
-                            </form>
+
+                        <div class="form-group text-center">
+                            <a href="{{ route('admin.post.index') }}" class="btn btn-warning btn-lg">Back</a>
+                            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
                         </div>
                     </div>
+
                 </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
         </div>
-        <!-- /.col -->
+
+        </form>
+    </div>
     </div>
 @endsection
 @push('css')
-
+    <link rel="stylesheet" href="{{ asset('assets/backend/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/backend/css/dropify.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/backend/plugins/summernote/summernote-bs4.css') }}">
 
 @endpush
 @push('csutomCSS')
 
 @endpush
 @push('js')
-
+    <script src="{{ asset('assets/backend/js/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/dropify.min.js') }}"></script>
+    <script src="{{ asset('assets/backend/plugins/summernote/summernote-bs4.min.js') }}"></script>
 @endpush
 @push('customJS')
+    <script>
+        // In your Javascript (external .js resource or <script> tag)
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
 
+        $(function () {
+            // Summernote
+            $('.summernote').summernote({
+                focus: true,
+                height: 300
+            })
+            //dropify js active
+            $('.dropify').dropify();
+        })
+    </script>
 @endpush
