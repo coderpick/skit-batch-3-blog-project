@@ -3,7 +3,6 @@
 
 <head>
     @include('layouts.backend.partials.head')
-    @notifyCss
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

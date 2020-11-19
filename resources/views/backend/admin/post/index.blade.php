@@ -26,8 +26,9 @@
                                         <th rowspan="1" colspan="1">S/N</th>
                                         <th rowspan="1" colspan="1">Title</th>
                                         <th rowspan="1" colspan="1">Author</th>
+                                        <th rowspan="1" colspan="1">Is Approved</th>
+                                        <th rowspan="1" colspan="1">Status</th>
                                         <th rowspan="1" colspan="1">Views</th>
-                                        <th rowspan="1" colspan="1">Published</th>
                                         <th rowspan="1" colspan="1">Actions</th>
                                     </tr>
                                     </thead>
@@ -37,8 +38,21 @@
                                             <td>{{ $key + 1 }}</td>
                                             <td>{!!  \Illuminate\Support\Str::limit($post->title,15)  !!}</td>
                                             <td>{{ $post->user->name??"" }}</td>
+                                             <td>
+                                                @if($post->is_approved == true)
+                                                    <span class="badge bg-blue">Approved</span>
+                                                @else
+                                                    <span class="badge bg-pink">Pending</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($post->status == true)
+                                                    <span class="badge bg-blue">Published</span>
+                                                @else
+                                                    <span class="badge bg-pink">Pending</span>
+                                                @endif
+                                            </td>
                                             <td>{{ $post->view_count }}</td>
-                                            <td>{{ $post->created_at }}</td>
                                             <td width="14%">
                                                 <a href="{{ route('admin.post.show', $post->slug) }}"
                                                    class="btn btn-info btn-sm">
@@ -67,8 +81,9 @@
                                         <th rowspan="1" colspan="1">S/N</th>
                                         <th rowspan="1" colspan="1">Title</th>
                                         <th rowspan="1" colspan="1">Author</th>
+                                        <th rowspan="1" colspan="1">Is Approved</th>
+                                        <th rowspan="1" colspan="1">Status</th>
                                         <th rowspan="1" colspan="1">Views</th>
-                                        <th rowspan="1" colspan="1">Published</th>
                                         <th rowspan="1" colspan="1">Actions</th>
                                     </tr>
                                     </tfoot>

@@ -25,9 +25,9 @@
                                 @method('PUT')
                                 @endif
                                 <div class="form-group">
-                                    <label for="tag">Tag Name</label>
-                                    <input type="text" name="tag" id="tag" class="form-control" value="{{ $tag->name??old('tag') }}">
-                                    @error('tag')
+                                    <label for="name">Tag Name</label>
+                                    <input type="text" name="name" id="name" class="form-control" value="{{ $tag->name??old('name') }}">
+                                    @error('name')
                                     <span class="text-danger ">{{ $message }}</span>
                                     @enderror
                                 </div>

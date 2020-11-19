@@ -22,9 +22,9 @@
                             <form action="{{ route('admin.tag.store') }}" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="tag">Tag Name</label>
-                                    <input type="text" name="tag" id="tag" class="form-control" value="{{ old('tag') }}">
-                                    @error('tag')
+                                    <label for="name">Tag Name</label>
+                                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
+                                    @error('name')
                                     <span class="text-danger ">{{ $message }}</span>
                                     @enderror
                                 </div>

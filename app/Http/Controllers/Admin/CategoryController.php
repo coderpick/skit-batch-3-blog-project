@@ -39,11 +39,11 @@ class CategoryController extends Controller {
      */
     public function store( Request $request ) {
         $this->validate( $request, [
-            'category' => 'required',
+           'name' => 'required|unique:categories|max:255',
         ] );
         $category = new Category();
-        $category->name = $request->category;
-        $category->slug = Str::slug( $request->category );
+        $category->name = $request->name;
+        $category->slug = Str::slug( $request->name );
         $category->save();
         // Session::flash( 'success', 'Category save successfully' );
         notify()->success('Category save successfully');
@@ -84,11 +84,11 @@ class CategoryController extends Controller {
      */
     public function update( Request $request, $id ) {
         $this->validate( $request, [
-            'category' => 'required',
+           'name' => 'required|unique:categories|max:255',
         ] );
         $category = Category::findOrFail( $id );
-        $category->name = $request->category;
-        $category->slug = Str::slug( $request->category );
+        $category->name = $request->name;
+        $category->slug = Str::slug( $request->name );
         $category->save();
         notify()->success('Category update successfully');
         return redirect()->route( 'admin.category.index' );

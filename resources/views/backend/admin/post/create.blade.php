@@ -61,22 +61,11 @@
                             <span class="text-danger d-block">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group clearfix">
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="radioPrimary1" name="status"  value="true">
-                                <label for="radioPrimary1">
-                                    Published
-                                </label>
+                        <div class="form-group">
+                             <div class="custom-control custom-checkbox">
+                              <input class="custom-control-input" type="checkbox" name="status" checked id="customCheckbox1" value="true">
+                              <label for="customCheckbox1" class="custom-control-label">Published</label>
                             </div>
-                            <div class="icheck-primary d-inline">
-                                <input type="radio" id="radioPrimary2" name="status" value="false" >
-                                <label for="radioPrimary2">
-                                    Draft
-                                </label>
-                            </div>
-                            @error('status')
-                            <span class="text-danger d-block">{{ $message }}</span>
-                            @enderror
                         </div>
 
                         <div class="form-group text-center">

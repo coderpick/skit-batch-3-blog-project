@@ -8,6 +8,7 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{  asset('assets/backend/plugins/fontawesome-free/css/all.min.css') }}">
     @stack('css')
+    @notifyCss
     <!-- Theme style -->
     <link rel="stylesheet" href="{{  asset('assets/backend/dist/css/adminlte.min.css') }}">
      <style>

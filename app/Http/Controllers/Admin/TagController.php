@@ -45,11 +45,11 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'tag'=>'required'
+             'name' => 'required|unique:tags|max:255',
         ]);
         $tag = new Tag();
-        $tag->name = $request->tag;
-        $tag->slug = Str::slug($request->tag);
+        $tag->name = $request->name;
+        $tag->slug = Str::slug($request->name);
         $tag->save();
         Session::flash('success', 'Tag save successfully');
         return redirect()->route('admin.tag.index');
@@ -92,11 +92,11 @@ class TagController extends Controller
     public function update(Request $request, $id)
     {
          $this->validate($request,[
-            'tag'=>'required'
+            'name' => 'required|unique:tags|max:255',
         ]);
         $tag = Tag::findOrFail($id);
-        $tag->name = $request->tag;
-        $tag->slug = Str::slug($request->tag);
+        $tag->name = $request->name;
+        $tag->slug = Str::slug($request->name);
         $tag->save();
         Session::flash('success', 'Tag update successfully');
         return redirect()->route('admin.tag.index');
