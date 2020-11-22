@@ -61,12 +61,11 @@
                                                    class="btn btn-success btn-sm">
                                                     <i class="fa fa-pencil-alt"></i></a>
 
-                                                <a onclick="event.preventDefault();
-                                                    document.getElementById('delete-form').submit();"
+                                                <a onclick="deletePost({{ $post->id }})"
                                                    class="btn btn-danger btn-sm text-white">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
-                                                <form id="delete-form" action="{{ route('admin.post.destroy', $post->id) }}"
+                                                <form id="delete-form-{{ $post->id }}" action="{{ route('admin.post.destroy', $post->id) }}"
                                                       method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
@@ -104,8 +103,7 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('assets/backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet"
-          href="{{ asset('assets/backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
 @endpush
 @push('csutomCSS')
 
@@ -116,6 +114,7 @@
     <script src="{{ asset('assets/backend/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/backend/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/backend/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/sweetalert2.all.js') }}"></script>
 @endpush
 @push('customJS')
     <script>
@@ -135,5 +134,36 @@
             });
         });
 
+        // sweet alert active
+    function deletePost(id) {
+            swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: false,
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    event.preventDefault();
+                    document.getElementById('delete-form-'+id).submit();
+                } else if (
+                    // Read more about handling dismissals
+                    result.dismiss === swal.DismissReason.cancel
+                ) {
+                    swal(
+                        'Cancelled',
+                        'Your data is safe :)',
+                        'error'
+                    )
+                }
+            })
+        }
     </script>
 @endpush

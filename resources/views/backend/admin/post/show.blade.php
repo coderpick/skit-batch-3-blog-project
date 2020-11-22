@@ -4,7 +4,8 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-body">
-                <img src="{{ asset($post->image) }}" alt="">
+                {{-- <img src="{{ asset($post->image) }}" alt=""> --}}
+                <img src="{{ Storage::disk('public')->url('post/'.$post->image) }}" alt="">
                 <h2>{{ $post->title }}</h2>
                 <p>
                  <small>Posted By <strong> <a href="">{{ $post->user->name??"" }}</a></strong> on {{ $post->created_at->toFormattedDateString() }}</small>

@@ -57,7 +57,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="image">Post Image</label>
-                                    <input type="file" name="image" id="image" data-default-file="{{ asset($post->image) }}" data-height="200" class="form-control dropify">
+                                    <input type="file" name="image" id="image" data-default-file="{{ Storage::disk('public')->url('post/'.$post->image) }}" data-height="200" class="form-control dropify">
                                     @error('image')
                                     <span class="text-danger d-block">{{ $message }}</span>
                                     @enderror
