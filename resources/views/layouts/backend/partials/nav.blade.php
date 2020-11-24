@@ -33,10 +33,10 @@
                       alt="User Image">&nbsp;
               </a>
               <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                  <a class="dropdown-item" href="#"> </a>
+                  <a class="dropdown-item" href="#">Profile </a>
                   <a class="dropdown-item  text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
-                      <i class="mdi mdi-power text-danger"></i> {{ __('Logout') }}
+                      <i class="mdi mdi-power text-danger"></i> {{ __('Logout')}}
                   </a>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                       @csrf
