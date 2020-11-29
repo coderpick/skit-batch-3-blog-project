@@ -9,8 +9,7 @@
                             <h3 class="card-title"></h3>
                         </div>
                         <div class="col-sm-6 text-right">
-                            <a href="{{ route('admin.post.create') }}" class="btn btn-success btn-sm"><i
-                                    class="fa fa-plus-circle"></i> Add New</a>
+
                         </div>
                     </div>
                 </div>
@@ -24,53 +23,24 @@
                                     <thead>
                                     <tr role="row">
                                         <th rowspan="1" colspan="1">S/N</th>
-                                        <th rowspan="1" colspan="1">Title</th>
-                                        <th rowspan="1" colspan="1">Author</th>
-                                        <th rowspan="1" colspan="1">Is Approved</th>
-                                        <th rowspan="1" colspan="1">Status</th>
-                                        <th rowspan="1" colspan="1">Views</th>
-                                        <th rowspan="1" colspan="1">Actions</th>
+                                        <th rowspan="1" colspan="1">Email</th>
+                                        <th rowspan="1" colspan="1">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($posts as $key => $post)
+                                    @foreach ($subscribers as $key => $subscriber)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
-                                            <td>{!!  \Illuminate\Support\Str::limit($post->title,15)  !!}</td>
-                                            <td>{{ $post->user->name??"" }}</td>
-                                             <td>
-                                                @if($post->is_approved == true)
-                                                    <span class="badge bg-blue">Approved</span>
-                                                @else
-                                                    <span class="badge bg-pink">Pending</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if($post->status == true)
-                                                    <span class="badge bg-blue">Published</span>
-                                                @else
-                                                    <span class="badge bg-pink">Pending</span>
-                                                @endif
-                                            </td>
-                                            <td>{{ $post->view_count }}</td>
-                                            <td width="14%">
-                                                <a href="{{ route('admin.post.show', $post->id) }}"
-                                                   class="btn btn-info btn-sm">
-                                                    <i class="fa fa-eye"></i></a>
-                                                <a href="{{ route('admin.post.edit', $post->id) }}"
-                                                   class="btn btn-success btn-sm">
-                                                    <i class="fa fa-pencil-alt"></i></a>
-
-                                                <a onclick="deletePost({{ $post->id }})"
+                                            <td>{{ $subscriber->email }}</td>
+                                            <td width="12%">
+                                                <a onclick="deleteSubscriber({{ $subscriber->id }})"
                                                    class="btn btn-danger btn-sm text-white">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
-                                                <form id="delete-form-{{ $post->id }}" action="{{ route('admin.post.destroy', $post->id) }}"
+                                                <form id="delete-form-{{ $subscriber->id }}" action="{{ route('admin.subscriber.delete', $subscriber->id) }}"
                                                       method="POST" style="display: none;">
                                                     @csrf
-                                                    @method('DELETE')
                                                 </form>
-
                                             </td>
                                         </tr>
                                     @endforeach
@@ -78,12 +48,8 @@
                                     <tfoot>
                                     <tr>
                                         <th rowspan="1" colspan="1">S/N</th>
-                                        <th rowspan="1" colspan="1">Title</th>
-                                        <th rowspan="1" colspan="1">Author</th>
-                                        <th rowspan="1" colspan="1">Is Approved</th>
-                                        <th rowspan="1" colspan="1">Status</th>
-                                        <th rowspan="1" colspan="1">Views</th>
-                                        <th rowspan="1" colspan="1">Actions</th>
+                                        <th rowspan="1" colspan="1">Email</th>
+                                        <th rowspan="1" colspan="1">Action</th>
                                     </tr>
                                     </tfoot>
                                 </table>
@@ -103,7 +69,8 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('assets/backend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('assets/backend/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
 @endpush
 @push('csutomCSS')
 
@@ -115,6 +82,7 @@
     <script src="{{ asset('assets/backend/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/backend/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/backend/js/sweetalert2.all.js') }}"></script>
+
 @endpush
 @push('customJS')
     <script>
@@ -125,19 +93,18 @@
             });
             $('#example2').DataTable({
                 "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": false,
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
             });
         });
-
         // sweet alert active
-    function deletePost(id) {
+        function deleteSubscriber(id) {
             swal({
-                title: 'Are you sure?',
+                title: 'Are you sure? Delete this Subscriber',
                 text: "You won't be able to revert this!",
                 type: 'warning',
                 showCancelButton: true,
@@ -165,5 +132,6 @@
                 }
             })
         }
+
     </script>
 @endpush

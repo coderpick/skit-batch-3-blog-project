@@ -38,7 +38,7 @@
                                             <td>{{ $key + 1 }}</td>
                                             <td>{!!  \Illuminate\Support\Str::limit($post->title,15)  !!}</td>
                                             <td>{{ $post->user->name??"" }}</td>
-                                             <td>
+                                            <td>
                                                 @if($post->is_approved == true)
                                                     <span class="badge bg-blue">Approved</span>
                                                 @else
@@ -55,22 +55,8 @@
                                             <td>{{ $post->view_count }}</td>
                                             <td width="14%">
                                                 <a href="{{ route('admin.post.show', $post->id) }}"
-                                                   class="btn btn-info btn-sm">
+                                                class="btn btn-info btn-sm">
                                                     <i class="fa fa-eye"></i></a>
-                                                <a href="{{ route('admin.post.edit', $post->id) }}"
-                                                   class="btn btn-success btn-sm">
-                                                    <i class="fa fa-pencil-alt"></i></a>
-
-                                                <a onclick="deletePost({{ $post->id }})"
-                                                   class="btn btn-danger btn-sm text-white">
-                                                    <i class="fa fa-trash"></i>
-                                                </a>
-                                                <form id="delete-form-{{ $post->id }}" action="{{ route('admin.post.destroy', $post->id) }}"
-                                                      method="POST" style="display: none;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
-
                                             </td>
                                         </tr>
                                     @endforeach
@@ -133,37 +119,5 @@
                 "responsive": true,
             });
         });
-
-        // sweet alert active
-    function deletePost(id) {
-            swal({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
-                confirmButtonClass: 'btn btn-success',
-                cancelButtonClass: 'btn btn-danger',
-                buttonsStyling: false,
-                reverseButtons: true
-            }).then((result) => {
-                if (result.value) {
-                    event.preventDefault();
-                    document.getElementById('delete-form-'+id).submit();
-                } else if (
-                    // Read more about handling dismissals
-                    result.dismiss === swal.DismissReason.cancel
-                ) {
-                    swal(
-                        'Cancelled',
-                        'Your data is safe :)',
-                        'error'
-                    )
-                }
-            })
-        }
     </script>
 @endpush

@@ -114,15 +114,31 @@ class PostController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( $slug ) {
+    public function show( $id ) {
 
-        $data['post'] = Post::where( 'slug', $slug )->first();
+        $data['post'] = Post::where( 'id', $id )->first();
         $data['pageTitle'] = 'Post';
         $data['breadcrumb'] = 'show';
         $data['parentRoute'] = 'admin.post.index';
         return view( 'backend.admin.post.show', $data );
     }
 
+    public function pending(){
+        $data['posts'] = Post::where('is_approved',false)->latest()->get();
+        $data['pageTitle'] = 'Pending Post';
+        $data['breadcrumb'] = 'list';
+        $data['parentRoute'] = 'admin.post.index';
+        return view( 'backend.admin.post.pending', $data );
+    }
+    public function approval($id){
+        $post = Post::findOrFail($id);
+        if($post->is_approved ==false){
+            $post->is_approved =true;
+            $post->save();
+            notify()->success( 'Post approved successfully' );
+            return redirect()->route( 'admin.post.pending' );
+        }
+    }
     public function edit( $id ) {
         $data['post'] = Post::where( 'id', $id )->first();
         $data['tags'] = Tag::all();

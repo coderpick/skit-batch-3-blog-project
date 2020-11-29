@@ -62,6 +62,24 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.post.pending') }}"
+                            class="nav-link {{ Request::is('admin/pending/post') ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-list"></i>
+                            <p>
+                            Pending Post
+                            </p>
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a href="{{ route('admin.subscriber.list') }}"
+                            class="nav-link {{ Request::is('admin/subscriber') ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-list"></i>
+                            <p>
+                            Subscriber
+                            </p>
+                        </a>
+                    </li>
 
                 @endif
                 {{-- admin route end --}}
