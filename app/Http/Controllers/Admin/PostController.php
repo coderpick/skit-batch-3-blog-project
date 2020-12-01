@@ -5,12 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Subscriber;
 use App\Models\Tag;
+use App\Notifications\AuthorPostApproved;
+use App\Notifications\NewPostNotify;
 use App\Traits\SlugHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -90,19 +94,15 @@ class PostController extends Controller {
         }
         $post->is_approved = true;
         $post->image = $imageName;
-        /*  if ($request->hasFile('image')) {
-        $image = $request->file('image');
-        $file_name ='post'.'_'.time();
-        $upload_path = 'uploads/post/';
-        $filePath = $upload_path.$file_name.'.'.$image->getClientOriginalExtension();
-        $image_url = $upload_path.$filePath;
-        $image->move($upload_path,$image_url);
-        $post->image = $filePath;
-        } */
         $post->save();
         /*save pivot table data*/
         $post->categories()->attach( $request->categories );
         $post->tags()->attach( $request->tags );
+        $subscribers = Subscriber::all();
+        foreach ($subscribers as $subscriber){
+            Notification::route('mail', $subscriber->email)
+                ->notify(new NewPostNotify($post));
+        }
         notify()->success( 'Post save successfully' );
         return redirect()->route( 'admin.post.index' );
 
@@ -135,9 +135,22 @@ class PostController extends Controller {
         if($post->is_approved ==false){
             $post->is_approved =true;
             $post->save();
+            $post->user->notify(new AuthorPostApproved($post));
+
+            $subscribers = Subscriber::all();
+            foreach ($subscribers as $subscriber){
+                Notification::route('mail', $subscriber->email)
+                    ->notify(new NewPostNotify($post));
+            }
+
+
             notify()->success( 'Post approved successfully' );
             return redirect()->route( 'admin.post.pending' );
         }
+        else {
+            notify()->success( 'This Post is already approved' );
+        }
+        return redirect()->back();
     }
     public function edit( $id ) {
         $data['post'] = Post::where( 'id', $id )->first();
