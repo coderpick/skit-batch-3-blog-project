@@ -26,6 +26,7 @@
                                             <th rowspan="1" colspan="1">S/N</th>
                                             <th rowspan="1" colspan="1">Name</th>
                                             <th rowspan="1" colspan="1">Slug</th>
+                                            <th rowspan="1" colspan="1">Post</th>
                                             <th rowspan="1" colspan="1">Actions</th>
                                         </tr>
                                     </thead>
@@ -35,6 +36,9 @@
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $category->name }}</td>
                                                 <td>{{ $category->slug }}</td>
+                                                <td>
+                                                    <span class="badge badge-primary">{{ $category->posts->count() }}</span>
+                                                </td>
                                                 <td width="12%">
                                                     <a href="{{ route('admin.category.edit', $category->id) }}"
                                                         class="btn btn-success btn-sm">
@@ -60,6 +64,7 @@
                                             <th rowspan="1" colspan="1">S/N</th>
                                             <th rowspan="1" colspan="1">Name</th>
                                             <th rowspan="1" colspan="1">Slug</th>
+                                            <th rowspan="1" colspan="1">Post</th>
                                             <th rowspan="1" colspan="1">Actions</th>
                                         </tr>
                                     </tfoot>
