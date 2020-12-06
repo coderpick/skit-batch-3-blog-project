@@ -1,33 +1,33 @@
 @extends('layouts.frontend.master')
 @section('content')
-         <!-- Tranding News -->
-        <div class="bg-white">
-            <!-- Trending News Start -->
-            <div class="trending-news pt-4 border-tranding">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="trending-news-inner">
-                                <div class="title">
-                                    <i class="fa fa-bolt"></i>
-                                    <strong>trending news</strong>
-                                </div>
-                                <div class="trending-news-slider">
-                                    @forelse($posts as $post)
+    <!-- Tranding News -->
+    <div class="bg-white">
+        <!-- Trending News Start -->
+        <div class="trending-news pt-4 border-tranding">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="trending-news-inner">
+                            <div class="title">
+                                <i class="fa fa-bolt"></i>
+                                <strong>trending news</strong>
+                            </div>
+                            <div class="trending-news-slider">
+                                @forelse($posts as $post)
                                     <div class="item-single">
                                         <a href="javascript:void(0)">{{ $post->title }}</a>
                                     </div>
-                                    @empty
-                                    @endforelse
-                                </div>
+                                @empty
+                                @endforelse
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Trending News End -->
         </div>
-        <!-- End Tranding News -->
+        <!-- Trending News End -->
+    </div>
+    <!-- End Tranding News -->
     <div class="col-md-8">
         <!-- Popular news carousel -->
         <div class="card__post-carousel">
@@ -93,136 +93,81 @@
             <h4 class="border_section">জাতীয়</h4>
             <div class="row ">
                 @forelse($nationals as $national)
-                    @foreach($national->posts as $post)
-
-                <div class="col-lg-6 pd-0">
-                    <!-- Post Article -->
-                    <div class="article__entry">
-                        <div class="article__image">
-                            <a href="#">
-                                <img src="{{  Storage::disk('public')->url('post/'.$post ->image) }}" alt="" class="img-fluid">
-                            </a>
-                        </div>
-                        <div class="article__content">
-                            <div class="article__category">
-                                {{ $national->name }}
-                            </div>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
+                    @foreach($national->posts->slice(0, 2) as $post)
+                        <div class="col-lg-6 pd-0">
+                            <!-- Post Article -->
+                            <div class="article__entry">
+                                <div class="article__image">
+                                    <a href="#">
+                                        <img src="{{  Storage::disk('public')->url('post/'.$post ->image) }}" alt="" class="img-fluid">
+                                    </a>
+                                </div>
+                                <div class="article__content">
+                                    <div class="article__category">
+                                        {{ $national->name }}
+                                    </div>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
                                                 <span class="text-primary">
                                                     by {{ $post->user->name??"" }}
                                                 </span>
-                                </li>
-                                <li class="list-inline-item">
+                                        </li>
+                                        <li class="list-inline-item">
                                                 <span class="text-dark text-capitalize">
                                                       {{ $post->updated_at->toFormattedDateString()}}
                                                 </span>
-                                </li>
+                                        </li>
 
-                            </ul>
-                            <h5>
-                                <a href="#">
-                                   {{$post->title}}
-                                </a>
-                            </h5>
-                            <a href="#" class="btn btn-outline-primary mb-4 text-capitalize"> read more</a>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <!-- Post Article -->
-                        <div class="card__post card__post-list">
-                            <div class="image-sm">
-                                <a href="./card-article-detail-v1.html">
-                                    <img src="images/placeholder/500x400.jpg" class="img-fluid" alt="">
-                                </a>
-                            </div>
-
-
-                            <div class="card__post__body ">
-                                <div class="card__post__content">
-
-                                    <div class="card__post__author-info mb-2">
-                                        <ul class="list-inline">
-                                            <li class="list-inline-item">
-                                                            <span class="text-primary">
-                                                                by david hall
-                                                            </span>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                            <span class="text-dark text-capitalize">
-                                                                descember 09, 2016
-                                                            </span>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                    <div class="card__post__title">
-                                        <h6>
-                                            <a href="./card-article-detail-v1.html">
-                                                6 Best Tips for Building a Good Shipping Boat
-                                            </a>
-                                        </h6>
-                                    </div>
-
+                                    </ul>
+                                    <h5>
+                                        <a href="#">
+                                            {{$post->title}}
+                                        </a>
+                                    </h5>
+                                    <a href="#" class="btn btn-outline-primary mb-4 text-capitalize"> read more</a>
                                 </div>
-
-
                             </div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <!-- Post Article -->
-                        <div class="card__post card__post-list">
-                            <div class="image-sm">
-                                <a href="./card-article-detail-v1.html">
-                                    <img src="images/placeholder/500x400.jpg" class="img-fluid" alt="">
-                                </a>
-                            </div>
-
-
-                            <div class="card__post__body ">
-                                <div class="card__post__content">
-
-                                    <div class="card__post__author-info mb-2">
-                                        <ul class="list-inline">
-                                            <li class="list-inline-item">
-                                                            <span class="text-primary">
-                                                                by david hall
-                                                            </span>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                            <span class="text-dark text-capitalize">
-                                                                descember 09, 2016
-                                                            </span>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                    <div class="card__post__title">
-                                        <h6>
-                                            <a href="./card-article-detail-v1.html">
-                                                6 Best Tips for Building a Good Shipping Boat
-                                            </a>
-                                        </h6>
-                                        <!-- <p class="d-none d-lg-block d-xl-block">
-        Maecenas accumsan tortor ut velit pharetra mollis. Proin eu nisl et arcu iaculis placerat
-        sollicitudin ut est. In fringilla dui dui.
-    </p> -->
-
-                                    </div>
-
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                     @endforeach
+                    @endforeach
                 @empty
                 @endforelse
             </div>
+                                 <div class="mb-3">
+                                <div class="card__post card__post-list">
+                                    <div class="image-sm">
+                                        <a href="./card-article-detail-v1.html">
+                                            <img src="images/placeholder/500x400.jpg" class="img-fluid" alt="">
+                                        </a>
+                                    </div>
+
+                                    <div class="card__post__body ">
+                                        <div class="card__post__content">
+                                            <div class="card__post__author-info mb-2">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                            <span class="text-primary">
+                                                                by david hall
+                                                            </span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                            <span class="text-dark text-capitalize">
+                                                                descember 09, 2016
+                                                            </span>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                            <div class="card__post__title">
+                                                <h6>
+                                                    <a href="./card-article-detail-v1.html">
+                                                        6 Best Tips for Building a Good Shipping Boat
+                                                    </a>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
         </div>
         <!-- Popular news Category -->
 
@@ -661,4 +606,5 @@
             </div>
         </div>
     </div>
+    @include('layouts.frontend.partials.sidebar')
 @endsection

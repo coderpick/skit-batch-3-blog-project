@@ -3,19 +3,28 @@
 use App\Http\Controllers\Admin\AdminSubscriberController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SubscriberController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Author\AuthorPostController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Author\AuthorDashboardController;
-
+use Illuminate\Support\Facades\View;
 
 
 //Route::get('/', function () {
 //    return view('layouts.frontend.master');
 //});
 Route::get('/',[HomeController::class,'index']);
+
+Route::view('about','frontend.about')->name('about');
+Route::view('contact','frontend.contact')->name('contact');
+
+
+//View::composer('layouts.frontend.partials.header', function ($view) {
+//              $view->with('categories', Category::get());
+//});
 
 Route::post('subscriber/store',[SubscriberController::class,'store'])->name('subscriber.store');
 Auth::routes();

@@ -41,12 +41,7 @@
 <section class="bg-content">
     <div class="container">
         <div class="row">
-
           @yield('content')
-            <!-- End Category news -->
-
-            @include('layouts.frontend.partials.sidebar')
-
         </div>
     </div>
 </section>

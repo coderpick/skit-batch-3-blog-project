@@ -53,50 +53,13 @@
                                 <h4 class="footer-title">category</h4>
                                 <div class="link__category">
                                     <ul class="list-unstyled ">
-                                        <li class="list-inline-item">
-                                            <a href="#">apps</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#">business</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#">entertainment</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#">fashion</a>
-                                        </li>
-
-                                        <li class="list-inline-item">
-                                            <a href="#">Food</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#">Gadget</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#">Gaming</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#">Health</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#">Lifestyle</a>
-                                        </li>
-
-                                        <li class="list-inline-item">
-                                            <a href="#">Science</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#">Travel</a>
-                                        </li>
-
-                                        <li class="list-inline-item">
-                                            <a href="#">Startup</a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="#">Sports</a>
-                                        </li>
-
-
+                                        @forelse($categories as $category)
+                                            <li class="list-inline-item">
+                                                <a href="#">{{ $category->name }}</a>
+                                            </li>
+                                        @empty
+                                            <li>No category found (:</li>
+                                        @endforelse
                                     </ul>
                                 </div>
                             </div>

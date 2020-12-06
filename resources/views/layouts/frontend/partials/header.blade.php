@@ -6,16 +6,17 @@
                     <div class="col-sm-12 col-md-5">
                         <div class="topbar-left">
                             <div class="topbar-text">
-                                Monday, March 22, 2020
+                                @php
+                                echo date('l, F d, Y');
+                                @endphp
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-7">
                         <div class="list-unstyled topbar-right">
                             <ul class="topbar-link">
-                                <li><a href="#" title="">Career</a></li>
-                                <li><a href="#" title="">Contact Us</a></li>
-                                <li><a href="#" title="">Login / Register</a></li>
+                                <li><a href="{{ route('login') }}" title="">Login</a></li>
+{{--                                <li><a href="{{ route('register') }}" title="">Register</a></li>--}}
                             </ul>
                             <ul class="topbar-sosmed">
                                 <li>
@@ -76,247 +77,26 @@
             </button> -->
                     <div class="collapse navbar-collapse justify-content-between" id="main_nav99">
                         <ul class="navbar-nav">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown"> Home </a>
-                                <ul class="dropdown-menu dropdown-menu-left">
-                                    <li><a class="dropdown-item" href="/homepage-v1.html"> Home version one </a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="homepage-v2.html"> Home version two </a></li>
-                                    <li><a class="dropdown-item" href="/homepage-v3.html"> Home version three </a></li>
-                                    <li><a class="dropdown-item" href="/homepage-v4.html"> Home version four </a></li>
-                                </ul>
+                            <li class="nav-item ">
+                                <a class="nav-link active " href="{{ route('home') }}"> Home </a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> Pages </a>
-                                <ul class="dropdown-menu animate fade-up">
+                             <li class="nav-item dropdown">
+                            <a class="nav-link active dropdown-toggle text-dark" href="#" data-toggle="dropdown"> Category
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-left">
+                                @forelse($categories as $category)
+                                <li><a class="dropdown-item text-dark" href=""> {{ $category->name }} </a>
+                                </li>
+                                @empty
+                                    <li>No category found (:</li>
+                                @endforelse
+                            </ul>
+                        </li>
 
-                                    <li><a class="dropdown-item icon-arrow" href="#"> Blog </a>
-                                        <ul class="submenu dropdown-menu  animate fade-up">
-                                            <li><a class="dropdown-item" href="/category-style-v1.html">Style 1</a></li>
-                                            <li><a class="dropdown-item" href="/category-style-v2.html">Style 2</a></li>
-                                            <li><a class="dropdown-item" href="/category-style-v3.html">Style 3</a></li>
-                                            <li><a class="dropdown-item icon-arrow" href="">Submenu item 3 </a>
-                                                <ul class="submenu dropdown-menu  animate fade-up">
-                                                    <li><a class="dropdown-item" href="">Multi level 1</a></li>
-                                                    <li><a class="dropdown-item" href="">Multi level 2</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a class="dropdown-item" href="">Submenu item 4</a></li>
-                                            <li><a class="dropdown-item" href="">Submenu item 5</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="dropdown-item icon-arrow" href="#"> Blog single detail </a>
-                                        <ul class="submenu dropdown-menu  animate fade-up">
-                                            <li><a class="dropdown-item" href="/article-detail-v1.html">Style 1</a></li>
-                                            <li><a class="dropdown-item" href="/article-detail-v2.html">Style 2</a></li>
-                                            <li><a class="dropdown-item" href="/article-detail-v3.html">Style 3</a></li>
-                                            <li><a class="dropdown-item" href="/article-detail-v4.html">Style 4</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li><a class="dropdown-item icon-arrow" href="#"> Search Result </a>
-                                        <ul class="submenu dropdown-menu  animate fade-up">
-                                            <li><a class="dropdown-item" href="/search-result.html">Style 1</a></li>
-                                            <li><a class="dropdown-item" href="/search-result-v1.html">Style 2</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="dropdown-item" href="/login.html">Login </a>
-                                    <li><a class="dropdown-item" href="/register.html"> Register </a>
-                                    <li><a class="dropdown-item" href="/contact.html"> Contact </a>
-                                    <li><a class="dropdown-item" href="/404.html"> 404 Error </a>
-                                </ul>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ route('about') }}"> About </a>
                             </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link active dropdown-toggle" href="#" data-toggle="dropdown"> About </a>
-                                <ul class="dropdown-menu dropdown-menu-left">
-                                    <li><a class="dropdown-item" href="/about-us.html"> Style 1 </a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="/about-us-v1.html"> Style 2 </a></li>
-
-                                </ul>
-                            </li>
-
-                            <li class="nav-item dropdown has-megamenu">
-                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> News </a>
-                                <div class="dropdown-menu animate fade-down megamenu mx-auto" role="menu">
-                                    <div class="container wrap__mobile-megamenu">
-                                        <div class="col-megamenu">
-                                            <h5 class="title">Recent news</h5>
-                                            <hr>
-                                            <!-- Popular news carousel -->
-                                            <div class="popular__news-header-carousel">
-
-                                                <div class="top__news__slider">
-                                                    <div class="item">
-                                                        <!-- Post Article -->
-                                                        <div class="article__entry">
-                                                            <div class="article__image">
-                                                                <a href="#">
-                                                                    <img src="images/placeholder/500x400.jpg" alt=""
-                                                                        class="img-fluid">
-                                                                </a>
-                                                            </div>
-                                                            <div class="article__content">
-                                                                <ul class="list-inline">
-                                                                    <li class="list-inline-item">
-                                                                        <span class="text-primary">
-                                                                            by david hall
-                                                                        </span>,
-                                                                    </li>
-
-                                                                    <li class="list-inline-item">
-                                                                        <span>
-                                                                            descember 09, 2016
-                                                                        </span>
-                                                                    </li>
-                                                                </ul>
-                                                                <h5>
-                                                                    <a href="#">
-                                                                        Proin eu nisl et arcu iaculis placerat
-                                                                        sollicitudin ut est.
-                                                                    </a>
-                                                                </h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="item">
-                                                        <!-- Post Article -->
-                                                        <div class="article__entry">
-                                                            <div class="article__image">
-                                                                <a href="#">
-                                                                    <img src="images/placeholder/500x400.jpg" alt=""
-                                                                        class="img-fluid">
-                                                                </a>
-                                                            </div>
-                                                            <div class="article__content">
-                                                                <ul class="list-inline">
-                                                                    <li class="list-inline-item">
-                                                                        <span class="text-primary">
-                                                                            by david hall
-                                                                        </span>,
-                                                                    </li>
-
-                                                                    <li class="list-inline-item">
-                                                                        <span>
-                                                                            descember 09, 2016
-                                                                        </span>
-                                                                    </li>
-                                                                </ul>
-                                                                <h5>
-                                                                    <a href="#">
-                                                                        Proin eu nisl et arcu iaculis placerat
-                                                                        sollicitudin ut est.
-                                                                    </a>
-                                                                </h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="item">
-                                                        <!-- Post Article -->
-                                                        <div class="article__entry">
-                                                            <div class="article__image">
-                                                                <a href="#">
-                                                                    <img src="images/placeholder/500x400.jpg" alt=""
-                                                                        class="img-fluid">
-                                                                </a>
-                                                            </div>
-                                                            <div class="article__content">
-                                                                <ul class="list-inline">
-                                                                    <li class="list-inline-item">
-                                                                        <span class="text-primary">
-                                                                            by david hall
-                                                                        </span>,
-                                                                    </li>
-
-                                                                    <li class="list-inline-item">
-                                                                        <span>
-                                                                            descember 09, 2016
-                                                                        </span>
-                                                                    </li>
-                                                                </ul>
-                                                                <h5>
-                                                                    <a href="#">
-                                                                        Proin eu nisl et arcu iaculis placerat
-                                                                        sollicitudin ut est.
-                                                                    </a>
-                                                                </h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="item">
-                                                        <!-- Post Article -->
-                                                        <div class="article__entry">
-                                                            <div class="article__image">
-                                                                <a href="#">
-                                                                    <img src="images/placeholder/500x400.jpg" alt=""
-                                                                        class="img-fluid">
-                                                                </a>
-                                                            </div>
-                                                            <div class="article__content">
-                                                                <ul class="list-inline">
-                                                                    <li class="list-inline-item">
-                                                                        <span class="text-primary">
-                                                                            by david hall
-                                                                        </span>,
-                                                                    </li>
-
-                                                                    <li class="list-inline-item">
-                                                                        <span>
-                                                                            descember 09, 2016
-                                                                        </span>
-                                                                    </li>
-                                                                </ul>
-                                                                <h5>
-                                                                    <a href="#">
-                                                                        Proin eu nisl et arcu iaculis placerat
-                                                                        sollicitudin ut est.
-                                                                    </a>
-                                                                </h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="item">
-                                                        <!-- Post Article -->
-                                                        <div class="article__entry">
-                                                            <div class="article__image">
-                                                                <a href="#">
-                                                                    <img src="images/placeholder/500x400.jpg" alt=""
-                                                                        class="img-fluid">
-                                                                </a>
-                                                            </div>
-                                                            <div class="article__content">
-                                                                <ul class="list-inline">
-                                                                    <li class="list-inline-item">
-                                                                        <span class="text-primary">
-                                                                            by david hall
-                                                                        </span>,
-                                                                    </li>
-
-                                                                    <li class="list-inline-item">
-                                                                        <span>
-                                                                            descember 09, 2016
-                                                                        </span>
-                                                                    </li>
-                                                                </ul>
-                                                                <h5>
-                                                                    <a href="#">
-                                                                        Proin eu nisl et arcu iaculis placerat
-                                                                        sollicitudin ut est.
-                                                                    </a>
-                                                                </h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div> <!-- col-megamenu.// -->
-                                    </div>
-                                </div> <!-- dropdown-mega-menu.// -->
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="#"> Category </a></li>
-                            <li class="nav-item"><a class="nav-link" href="/contact.html"> contact </a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}"> contact </a></li>
                         </ul>
 
 
@@ -378,110 +158,6 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>
-                    <div class="modal-body">
-                        <nav class="list-group list-group-flush">
-                            <ul class="navbar-nav ">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link active dropdown-toggle text-dark" href="#"
-                                        data-toggle="dropdown"> Home
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-left">
-                                        <li><a class="dropdown-item text-dark" href="/homepage-v1.html"> Home version
-                                                one </a>
-                                        </li>
-                                        <li><a class="dropdown-item text-dark" href="homepage-v2.html"> Home version two
-                                            </a>
-                                        </li>
-                                        <li><a class="dropdown-item text-dark" href="/homepage-v3.html"> Home version
-                                                three </a>
-                                        </li>
-                                        <li><a class="dropdown-item text-dark" href="/homepage-v4.html"> Home version
-                                                four </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle  text-dark" href="#" data-toggle="dropdown">
-                                        Pages </a>
-                                    <ul class="dropdown-menu animate fade-up">
-
-                                        <li><a class="dropdown-item icon-arrow  text-dark" href="#"> Blog </a>
-                                            <ul class="submenu dropdown-menu  animate fade-up">
-                                                <li><a class="dropdown-item" href="/category-style-v1.html">Style 1</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="/category-style-v2.html">Style 2</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="/category-style-v3.html">Style 3</a>
-                                                </li>
-
-                                                <li><a class="dropdown-item icon-arrow  text-dark" href="">Submenu item
-                                                        3 </a>
-                                                    <ul class="submenu dropdown-menu  animate fade-up">
-                                                        <li><a class="dropdown-item" href="">Multi level 1</a></li>
-                                                        <li><a class="dropdown-item" href="">Multi level 2</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a class="dropdown-item  text-dark" href="">Submenu item 4</a></li>
-                                                <li><a class="dropdown-item" href="">Submenu item 5</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="dropdown-item icon-arrow  text-dark" href="#"> Blog single detail
-                                            </a>
-                                            <ul class="submenu dropdown-menu  animate fade-up">
-                                                <li><a class="dropdown-item" href="/article-detail-v1.html">Style 1</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="/article-detail-v2.html">Style 2</a>
-                                                </li>
-                                                <li><a class="dropdown-item" href="/article-detail-v3.html">Style 3</a>
-                                                </li>
-
-                                            </ul>
-                                        </li>
-
-                                        <li><a class="dropdown-item icon-arrow  text-dark" href="#"> Search Result </a>
-                                            <ul class="submenu dropdown-menu  animate fade-up">
-                                                <li><a class="dropdown-item" href="/search-result.html">Style 1</a></li>
-                                                <li><a class="dropdown-item" href="/search-result-v1.html">Style 2</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a class="dropdown-item  text-dark" href="/login.html">Login </a>
-                                        <li><a class="dropdown-item  text-dark" href="/register.html"> Register </a>
-                                        <li><a class="dropdown-item  text-dark" href="/contact.html"> Contact </a>
-                                        <li><a class="dropdown-item  text-dark" href="/404.html"> 404 Error </a>
-                                    </ul>
-                                </li>
-
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link active dropdown-toggle  text-dark" href="#"
-                                        data-toggle="dropdown"> About
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-left">
-                                        <li><a class="dropdown-item" href="/about-us.html"> Style 1 </a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="/about-us-v1.html"> Style 2 </a></li>
-
-                                    </ul>
-                                </li>
-
-
-                                <li class="nav-item"><a class="nav-link  text-dark" href="#"> Category </a></li>
-                                <li class="nav-item"><a class="nav-link  text-dark" href="/contact.html"> contact </a>
-                                </li>
-                            </ul>
-
-                        </nav>
-                    </div>
-                    <div class="modal-footer">
-
-
-                        <p>© 2020 <a href="http://retenvi.com"
-                                title="Premium WordPress news &amp; magazine theme">Magzrenvi</a>
-                            -
-                            Premium template news, blog & magazine &amp;
-                            magazine theme by <a href="http://retenvi.com" title="retenvi">RETENVI.COM</a>.</p>
-
                     </div>
 
                 </div>
