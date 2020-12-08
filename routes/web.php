@@ -13,23 +13,13 @@ use App\Http\Controllers\Author\AuthorDashboardController;
 use Illuminate\Support\Facades\View;
 
 
-//Route::get('/', function () {
-//    return view('layouts.frontend.master');
-//});
-Route::get('/',[HomeController::class,'index']);
-
 Route::view('about','frontend.about')->name('about');
 Route::view('contact','frontend.contact')->name('contact');
-
-
-//View::composer('layouts.frontend.partials.header', function ($view) {
-//              $view->with('categories', Category::get());
-//});
 
 Route::post('subscriber/store',[SubscriberController::class,'store'])->name('subscriber.store');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group( ['as' => 'admin.', 'prefix' => 'admin/', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get( 'dashboard', [AdminDashboardController::class, 'index'] )->name( 'dashboard' );

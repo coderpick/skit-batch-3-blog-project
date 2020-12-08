@@ -41,15 +41,15 @@
                 <div class="row">
                     <div class=" col-sm-12 col-md-4 my-auto d-none d-sm-block ">
                         <figure class="mb-0">
-                            <a href="/homepage-v2.html">
-                                <img src="images/placeholder/logo.jpg" alt="" class="img-fluid logo">
+                            <a href="{{ route('home')  }}">
+                                <img src="{{ asset('assets/frontend/images/placeholder/logo.jpg') }}" alt="" class="img-fluid logo">
                             </a>
                         </figure>
                     </div>
                     <div class="col-md-8 d-none d-sm-block ">
                         <figure class="mt-3 ">
                             <a href="#">
-                                <img src="images/placeholder/950x150.jpg" alt="" class="img-fluid">
+                                <img src="{{ asset('assets/frontend/images/placeholder/950x150.jpg')}}" alt="" class="img-fluid">
                             </a>
                         </figure>
                     </div>
@@ -71,17 +71,14 @@
                         <a href="/homepage-v2.html">
                             <img src="images/placeholder/logo.jpg" alt="" class="img-fluid logo">
                         </a>
-                    </figure>
-                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav99">
-                <span class="navbar-toggler-icon"></span>
-            </button> -->
+                    </figure>                  
                     <div class="collapse navbar-collapse justify-content-between" id="main_nav99">
                         <ul class="navbar-nav">
                             <li class="nav-item ">
-                                <a class="nav-link active " href="{{ route('home') }}"> Home </a>
+                                <a class="nav-link active " href="{{ route('home') }}"> নীড়পাতা </a>
                             </li>
                              <li class="nav-item dropdown">
-                            <a class="nav-link active dropdown-toggle text-dark" href="#" data-toggle="dropdown"> Category
+                            <a class="nav-link active dropdown-toggle text-dark" href="#" data-toggle="dropdown"> বিভাগসমূহ
                             </a>
                             <ul class="dropdown-menu dropdown-menu-left">
                                 @forelse($categories as $category)
@@ -94,9 +91,9 @@
                         </li>
 
                             <li class="nav-item ">
-                                <a class="nav-link" href="{{ route('about') }}"> About </a>
+                                <a class="nav-link" href="{{ route('about') }}"> আমাদের সম্পর্কে </a>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}"> contact </a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}"> যোগাযোগ </a></li>
                         </ul>
 
 

@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 class AuthorDashboardController extends Controller {
 
     public function index() {
-        return view( 'backend.author.dashboard' );
+        $data['pageTitle'] = 'Author Dashboard';
+        $data['breadcrumb'] = 'Dashboard';
+        $data['parentRoute'] = 'author.dashboard';
+        return view( 'backend.author.dashboard',$data );
     }
 }

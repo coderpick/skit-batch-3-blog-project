@@ -11,14 +11,14 @@
                 <div class="card__post__author-info mb-2">
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item">
-                                            <span class="text-primary">
-                                                by david hall
-                                            </span>
+                            <span class="text-primary">
+                                by david hall
+                            </span>
                         </li>
                         <li class="list-inline-item">
-                                            <span class="text-dark text-capitalize">
-                                                descember 09, 2016
-                                            </span>
+                            <span class="text-dark text-capitalize">
+                                descember 09, 2016
+                            </span>
                         </li>
 
                     </ul>
@@ -29,16 +29,35 @@
                             Proin eu nisl et arcu iaculis placerat sollicitudin ut est
                         </a>
                     </h5>
-                    <!-- <p>
-Maecenas accumsan tortor ut velit pharetra mollis. Proin eu nisl et
-arcu
-iaculis
-placerat
-sollicitudin ut est. In fringilla dui dui.
-</p>
-<a href="#" class="btn btn-primary float-right">
-read more
-</a> -->
+                </div>
+
+            </div>
+            <!-- List Article -->
+            <div class="card__post__content p-3 card__post__body-border-all">
+                <div class="card__post__category text-capitalize">
+                    travel
+                </div>
+                <div class="card__post__author-info mb-2">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                            <span class="text-primary">
+                                by david hall
+                            </span>
+                        </li>
+                        <li class="list-inline-item">
+                            <span class="text-dark text-capitalize">
+                                descember 09, 2016
+                            </span>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="card__post__title">
+                    <h5>
+                        <a href="#">
+                            Proin eu nisl et arcu iaculis placerat sollicitudin ut est
+                        </a>
+                    </h5>
                 </div>
 
             </div>
@@ -107,55 +126,6 @@ read more
                             Proin eu nisl et arcu iaculis placerat sollicitudin ut est
                         </a>
                     </h5>
-                    <!-- <p>
-Maecenas accumsan tortor ut velit pharetra mollis. Proin eu nisl et
-arcu
-iaculis
-placerat
-sollicitudin ut est. In fringilla dui dui.
-</p>
-<a href="#" class="btn btn-primary float-right">
-read more
-</a> -->
-                </div>
-
-            </div>
-            <!-- List Article -->
-            <div class="card__post__content p-3 card__post__body-border-all">
-                <div class="card__post__category text-capitalize">
-                    travel
-                </div>
-                <div class="card__post__author-info mb-2">
-                    <ul class="list-inline mb-0">
-                        <li class="list-inline-item">
-                                            <span class="text-primary">
-                                                by david hall
-                                            </span>
-                        </li>
-                        <li class="list-inline-item">
-                                            <span class="text-dark text-capitalize">
-                                                descember 09, 2016
-                                            </span>
-                        </li>
-
-                    </ul>
-                </div>
-                <div class="card__post__title">
-                    <h5>
-                        <a href="#">
-                            Proin eu nisl et arcu iaculis placerat sollicitudin ut est
-                        </a>
-                    </h5>
-                    <!-- <p>
-Maecenas accumsan tortor ut velit pharetra mollis. Proin eu nisl et
-arcu
-iaculis
-placerat
-sollicitudin ut est. In fringilla dui dui.
-</p>
-<a href="#" class="btn btn-primary float-right">
-read more
-</a> -->
                 </div>
 
             </div>
