@@ -140,7 +140,7 @@ read more
                 <ul class="list-unstyled ">
                     @forelse($categories as $category)
                         <li>
-                            <a href="#">
+                            <a href="{{ route('post.category',$category->slug) }}">
                                 {{ $category->name }}
                                 <span class="badge">{{ $category->posts()->count() }}</span>
                             </a>

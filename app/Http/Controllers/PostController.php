@@ -9,12 +9,10 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-     public function index()
-    {
-        $data['posts'] = Post::latest()->limit(5)->get();
-        $data['categories'] = Category::get();
-        $data['tags']       = Tag::get();
-        $data['nationals']  = Category::where('slug','জাতীয়')->with('posts')->get();
-        return view('frontend.index',$data);
+    
+    public function postByCategory($slug){
+        $category = Category::where('slug',$slug)->first();
+       return $posts =$category->posts()->approved()->published()->paginate(12);
+        return view('frontend.post',compact('posts'));
     }
 }

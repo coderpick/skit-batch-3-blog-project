@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\View;
 
 Route::view('about','frontend.about')->name('about');
 Route::view('contact','frontend.contact')->name('contact');
-
+Route::get('category/{slug}',[App\Http\Controllers\PostController::class,'postByCategory'])->name('post.category');
 Route::post('subscriber/store',[SubscriberController::class,'store'])->name('subscriber.store');
 Auth::routes();
 
